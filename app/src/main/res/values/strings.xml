@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DataBindingGettingStarted</string>
+
+    <!-- dialog tags -->
+    <string name="dialog_choose_quantity">Choose Quantity</string>
+
+    <!-- Strings -->
+    <string name="dialog_quantity_title">Qty: </string>
+</resources>
