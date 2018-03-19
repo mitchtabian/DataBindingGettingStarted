@@ -1,163 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/White">
-
-    <LinearLayout
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="codingwithmitch.com.databindinggettingstarted.util.StringUtil"/>
+        <import type="codingwithmitch.com.databindinggettingstarted.util.BigDecimalUtil"/>
+        <import type="android.view.View"/>
+        <variable
+            name="product"
+            type="codingwithmitch.com.databindinggettingstarted.models.Product"/>
+        <variable
+            name="quantity"
+            type="int"/>
+        <variable
+            name="iMainActivity"
+            type="codingwithmitch.com.databindinggettingstarted.IMainActivity"/>
+        <variable
+            name="testUrl"
+            type="String"/>
+    </data>
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp"
         android:background="@color/White">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="5dp">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="@color/DarkGrey"
-                android:text=""
-                android:id="@+id/num_ratings"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
-
-
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?attr/ratingBarStyleSmall"
-                android:theme="@style/RatingBar"
-                android:scaleX="1.2"
-                android:scaleY="1.2"
-                android:numStars="5"
-                android:rating="4"
-                android:id="@+id/rating"
-                android:isIndicator="true"
-                android:layout_toLeftOf="@+id/num_ratings"
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"/>
-
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/title"
-            android:textColor="@color/Black"
-            android:text=""
-            android:textSize="14sp"
-            android:layout_marginTop="5dp"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp">
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:id="@+id/image"/>
-
-        </RelativeLayout>
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            >
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="@color/White">
 
-            <ImageView
-                android:layout_width="14sp"
-                android:layout_height="14sp"
-                android:src="@drawable/ic_dollor_sign_red"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="@color/DarkGrey"
+                    android:text="@{StringUtil.convertIntToString(product.num_ratings)}"
+                    android:id="@+id/num_ratings"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?attr/ratingBarStyleSmall"
+                    android:theme="@style/RatingBar"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    android:numStars="5"
+                    android:rating="@{product.rating.floatValue()}"
+                    android:id="@+id/rating"
+                    android:isIndicator="true"
+                    android:layout_toLeftOf="@+id/num_ratings"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/red2"
-                android:text=""
-                android:id="@+id/price"/>
+                android:id="@+id/title"
+                android:textColor="@color/Black"
+                android:text="@{product.title}"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp">
 
 
-            <TextView
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/image"
+                    app:imageResource="@{testUrl}"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="@color/DarkGrey"
-                android:text=""
-                android:id="@+id/original_price"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/strike_through"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                >
+
+                <ImageView
+                    android:layout_width="14sp"
+                    android:layout_height="14sp"
+                    android:src="@drawable/ic_dollor_sign_red"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/red2"
+                    android:text="@{product.hasSalePrice() ? BigDecimalUtil.getValue(product.sale_price) : BigDecimalUtil.getValue(product.price)}"
+                    android:id="@+id/price"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="@color/DarkGrey"
+                    android:text="@{BigDecimalUtil.getValue(product.price)}"
+                    android:id="@+id/original_price"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/strike_through"
+                    android:visibility="@{product.hasSalePrice() ? View.VISIBLE : View.INVISIBLE}"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/grey_rounded_button"
+                android:layout_marginTop="13dp"
+                android:id="@+id/quantity_button"
+                android:onClick="@{() -> iMainActivity.inflateQuantityDialog()}">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/Black"
+                    android:text="@{StringUtil.getQuantityString(quantity)}"
+                    android:id="@+id/quantity"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_up_down_arrows"
+                    android:layout_toRightOf="@id/quantity"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"/>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/orange_rounded_button"
+                android:id="@+id/add_to_cart">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/Black"
+                    android:text="Add to Cart"
+                    android:id="@+id/text_add_to_cart"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+
+            </RelativeLayout>
 
         </LinearLayout>
+    </RelativeLayout>
+</layout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="@drawable/grey_rounded_button"
-            android:layout_marginTop="13dp"
-            android:id="@+id/quantity_button">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@color/Black"
-                android:text=""
-                android:id="@+id/quantity"/>
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:src="@drawable/ic_up_down_arrows"
-                android:layout_toRightOf="@id/quantity"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"/>
-
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:layout_marginTop="13dp"
-            android:background="@drawable/orange_rounded_button"
-            android:id="@+id/add_to_cart">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/Black"
-                android:text="Add to Cart"
-                android:id="@+id/text_add_to_cart"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"/>
-
-
-        </RelativeLayout>
-
-    </LinearLayout>
-</RelativeLayout>
 

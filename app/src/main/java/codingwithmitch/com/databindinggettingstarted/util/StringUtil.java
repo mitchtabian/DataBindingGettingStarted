@@ -8,7 +8,7 @@ public class StringUtil {
     }
 
     public static String convertIntToString(int value){
-        return (String.valueOf(value));
+        return ("(" + String.valueOf(value) + ")");
     }
 
 
